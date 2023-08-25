@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: news
+  labels:
+    name: news
+spec:
+  rules:
+  - host: news.layer.systems
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: news
+            port: 
+              number: 80
