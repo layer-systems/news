@@ -31,13 +31,15 @@ socket.onmessage = function(event) {
                 }
             }
 
-
             var divCol = document.createElement('div');
             divCol.setAttribute('class', 'col');
             var divCard = document.createElement('div');
             divCard.setAttribute('class', 'card shadow-sm');
             var divCardBody = document.createElement('div');
             divCardBody.setAttribute('class', 'card-body');
+            var h5CardTitle = document.createElement('h5');
+            h5CardTitle.setAttribute('class', 'card-title');
+            h5CardTitle.innerHTML = title;
             var pCardText = document.createElement('p');
             pCardText.setAttribute('class', 'card-text');
             pCardText.innerHTML = summary;
@@ -49,23 +51,27 @@ socket.onmessage = function(event) {
             //     divBtnGroup.innerHTML +=
             //     `<button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='nostr://${id}';">${tag}</button>`;
             // }
-            var smallText = document.createElement('small');
-            smallText.setAttribute('class', 'text-body-secondary');
-            smallText.innerHTML = title;
+            // var smallText = document.createElement('small');
+            // smallText.setAttribute('class', 'text-body-secondary');
+            // smallText.innerHTML = summary;
 
-            var smallTextId = document.createElement('small');
-            smallTextId.setAttribute('class', 'text-body-secondary');
-            smallTextId.innerHTML = id;
+            // var smallTextId = document.createElement('small');
+            // smallTextId.setAttribute('class', 'text-body-secondary');
+            // smallTextId.innerHTML = id;
 
             divBtnFlex.appendChild(divBtnGroup);
-            divBtnFlex.appendChild(smallText);
+            // divBtnFlex.appendChild(smallText);
+            divCardBody.appendChild(h5CardTitle);
             divCardBody.appendChild(pCardText);
             divCardBody.appendChild(divBtnFlex);
-            divCardBody.appendChild(smallTextId);
+            // divCardBody.appendChild(smallTextId);
+
 
             divCard.appendChild(divCardBody);
             divCol.appendChild(divCard);
-            document.getElementById('lfc-row').appendChild(divCol);
+            if(title !== "" && summary !== "") {
+                document.getElementById('lfc-row').appendChild(divCol);
+            }
         }
     }
 };
